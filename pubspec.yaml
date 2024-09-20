@@ -5,10 +5,13 @@ version: 0.1.0
 
 environment:
   sdk: ^3.5.1
+  
 
 dependencies:
   flutter:
     sdk: flutter
+  get: ^4.3.8
+  persistent_bottom_nav_bar: any
 
 dev_dependencies:
   flutter_test:

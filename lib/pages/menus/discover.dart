@@ -1,51 +1,63 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import '.../model/anime_model.dart';
+import 'anime_details_page.dart';
+import 'package:anime_list_app/controller/anime_controller.dart';
 
-class AnimeController extends GetxController {
-  var animeList = <Anime>[].obs;
-  var filteredAnimeList = <Anime>[].obs;  // List untuk hasil filter pencarian
-  var isLoading = true.obs;
-  var searchText = ''.obs;  // Untuk menyimpan teks pencarian
+class Discover extends StatelessWidget {
+  const Discover({super.key});
 
   @override
-  void onInit() {
-    fetchAnime();
-    super.onInit();
-  }
+  Widget build(BuildContext context) {
+    final AnimeController controller = Get.find<AnimeController>();
 
-  void fetchAnime() async {
-    try {
-      isLoading(true);
-      var response = await http.get(Uri.parse('https://api.example.com/anime'));
-      if (response.statusCode == 200) {
-        var jsonData = json.decode(response.body);
-        var animes = (jsonData as List)
-            .map((animeJson) => Anime.fromJson(animeJson))
-            .toList();
-        animeList.addAll(animes);
-        filteredAnimeList.addAll(animes);  // Inisialisasi daftar terfilter
-      } else {
-        print("Failed to load data");
-      }
-    } catch (e) {
-      print(e.toString());
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  // Update filtered list berdasarkan searchText
-  void updateSearchText(String text) {
-    searchText.value = text;
-    if (text.isEmpty) {
-      filteredAnimeList.assignAll(animeList);  // Reset ke list asli jika kosong
-    } else {
-      filteredAnimeList.assignAll(
-        animeList.where((anime) =>
-            anime.name.toLowerCase().contains(text.toLowerCase())).toList(),
-      );
-    }
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Discover Page'),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              onChanged: controller.updateSearchText,
+              decoration: const InputDecoration(
+                labelText: 'Search',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Obx(() {
+              if (controller.isLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (controller.filteredAnimeList.isEmpty) {
+                return const Center(child: Text('No anime found'));
+              }
+              return ListView.builder(
+                itemCount: controller.filteredAnimeList.length,
+                itemBuilder: (context, index) {
+                  final anime = controller.filteredAnimeList[index];
+                  return ListTile(
+                    leading: Container(
+                      width: 50,
+                      height: 100,
+                      child: Image.network(
+                        anime.posterUrl,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    title: Text(anime.name),
+                    onTap: () {
+                      Get.to(() => AnimeDetailsPage(anime: anime));
+                    },
+                  );
+                },
+              );
+            }),
+          ),
+        ],
+      ),
+    );
   }
 }

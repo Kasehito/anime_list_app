@@ -1,3 +1,6 @@
+import 'package:anime_list_app/pages/menus/discover.dart';
+import 'package:anime_list_app/pages/menus/homepage.dart';
+import 'package:anime_list_app/pages/menus/my_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:anime_list_app/controller/bottom_nav_controller.dart';
@@ -12,9 +15,9 @@ class BottomNav extends StatelessWidget {
         Get.put(BottomNavController());
 
     final List<Widget> menus = [
-      Text('Home'),
-      Text('Search'),
-      Text('Profile'),
+      HomePage(), // Home
+      Discover(), // Discover
+      MyListPage(), // My List
     ];
 
     return Obx(() => Scaffold(

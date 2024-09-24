@@ -1,3 +1,4 @@
+import 'package:anime_list_app/binding/binding.dart';
 import 'package:anime_list_app/pages/bottom_nav.dart';
 import 'package:anime_list_app/pages/login_page.dart';
 import 'package:anime_list_app/pages/menus/homepage.dart';
@@ -16,6 +17,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: Binding(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

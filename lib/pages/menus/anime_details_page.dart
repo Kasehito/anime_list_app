@@ -4,7 +4,7 @@ import 'package:anime_list_app/controller/anime_controller.dart'; // Import the 
 class AnimeDetailsPage extends StatelessWidget {
   final Anime anime;
 
-  const AnimeDetailsPage({Key? key, required this.anime}) : super(key: key);
+  const AnimeDetailsPage({super.key, required this.anime});
 
   @override
   Widget build(BuildContext context) {

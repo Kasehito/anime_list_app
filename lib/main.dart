@@ -27,9 +27,9 @@ class MainApp extends StatelessWidget {
       title: 'AnimeList',
       initialRoute: '/login',
       getPages: [
-        GetPage(name: '/login', page: () => LoginPage()),
-        GetPage(name: '/singup', page: () => SignupPage()),
-        GetPage(name: '/home', page: () => BottomNav()),
+        GetPage(name: '/login', page: () => const LoginPage()),
+        GetPage(name: '/singup', page: () => const SignupPage()),
+        GetPage(name: '/home', page: () => const BottomNav()),
       ],
     );
   }

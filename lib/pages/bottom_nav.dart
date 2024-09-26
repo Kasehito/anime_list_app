@@ -15,14 +15,14 @@ class BottomNav extends StatelessWidget {
         Get.put(BottomNavController());
 
     final List<Widget> menus = [
-      HomePage(), // Home
-      Discover(), // Discover
-      MyListPage(), // My List
+      const HomePage(), // Home
+      const Discover(), // Discover
+      const MyListPage(), // My List
     ];
 
     return Obx(() => Scaffold(
           appBar: AppBar(
-            title: Text('Bottom Navigation'),
+            title: const Text('Bottom Navigation'),
           ),
           body: Center(
             child: menus.elementAt(bottomNavController.currentIndex.value),
@@ -32,7 +32,7 @@ class BottomNav extends StatelessWidget {
             onTap: (index) {
               bottomNavController.changeIndex(index);
             },
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',

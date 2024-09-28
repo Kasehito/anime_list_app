@@ -39,7 +39,7 @@ class AuthController extends GetxController {
       await prefs.setBool('isLoggedIn', true);
 
       Get.offAllNamed('/home');
-    }
+    } 
   }
 
   // Method untuk memeriksa status login saat aplikasi dibuka kembali

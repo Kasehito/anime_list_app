@@ -4,6 +4,7 @@ import 'package:anime_list_app/pages/menus/my_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:anime_list_app/controller/bottom_nav_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNav extends StatelessWidget {
   const BottomNav({super.key});
@@ -22,7 +23,15 @@ class BottomNav extends StatelessWidget {
 
     return Obx(() => Scaffold(
           appBar: AppBar(
-            title: const Text('Bottom Navigation'),
+            title: Center(
+              child: SvgPicture.asset(
+                'assets/Animelist.svg', // Path to your logo
+                fit: BoxFit.contain,
+                height: 100,
+                placeholderBuilder: (context) => Text(
+                    'AnimeList'), // Placeholder text if image fails to load
+              ),
+            ),
           ),
           body: Center(
             child: menus.elementAt(bottomNavController.currentIndex.value),

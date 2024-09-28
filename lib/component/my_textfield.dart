@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MyTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final bool obscureText;
+  final TextStyle? textStyle;
 
   const MyTextField(
-      {super.key, required this.hintText,
+      {super.key,
+      required this.hintText,
       required this.controller,
-      required this.obscureText});
+      required this.obscureText,
+      this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class MyTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
+      style: textStyle,
     );
   }
 }

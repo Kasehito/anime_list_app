@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'anime_details_page.dart';
 import 'package:anime_list_app/controller/anime_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Discover extends StatelessWidget {
   const Discover({super.key});
@@ -11,13 +12,14 @@ class Discover extends StatelessWidget {
     final AnimeController controller = Get.find<AnimeController>();
 
     return Scaffold(
+      
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: TextField(
               onChanged: controller.updateSearchText,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search',
                 border: OutlineInputBorder(),
               ),
@@ -26,10 +28,10 @@ class Discover extends StatelessWidget {
           Expanded(
             child: Obx(() {
               if (controller.isLoading.value) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
               if (controller.filteredAnimeList.isEmpty) {
-                return Center(child: Text('No anime found'));
+                return const Center(child: Text('No anime found'));
               }
               return ListView.builder(
                 itemCount: controller.filteredAnimeList.length,

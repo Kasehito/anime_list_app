@@ -23,11 +23,11 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
       ),
       title: 'AnimeList',
-      initialRoute: '/login',
+      initialRoute: '/home',
       getPages: [
         GetPage(name: '/login', page: () => LoginPage()),
         GetPage(name: '/signup', page: () => SignupPage()),
-        GetPage(name: '/home', page: () => BottomNav()),
+        GetPage(name: '/home', page: () => const BottomNav()),
       ],
     );
   }

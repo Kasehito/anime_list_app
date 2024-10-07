@@ -5,9 +5,9 @@ class MyListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('My List Page'),
+    return Scaffold(
+      body: const Center(
+        child: Text('My List'),
       ),
     );
   }

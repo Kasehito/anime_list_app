@@ -18,9 +18,9 @@ class BottomNav extends StatelessWidget {
         Get.put(BottomNavController());
 
     final List<Widget> menus = [
-      HomePage(), // Home
-      DiscoverPage(), // Discover
-      MyListPage(), // My List
+      const HomePage(), // Home
+      const DiscoverPage(), // Discover
+      const MyListPage(), // My List
     ];
 
     return Obx(() => Scaffold(
@@ -35,12 +35,15 @@ class BottomNav extends StatelessWidget {
               ),
             ),
             actions: [
-              IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () {
-                  Get.to(const ProfilePage());
-                },
-              ),
+              Container(
+                margin: const EdgeInsets.only(right: 15),
+                child: IconButton(
+                  icon: const Icon(Icons.person),
+                  onPressed: () {
+                    // Get.to(const ProfilePage());
+                  },
+                ),
+              )
             ],
           ),
           body: Center(

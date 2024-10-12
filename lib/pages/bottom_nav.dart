@@ -1,6 +1,7 @@
 import 'package:anime_list_app/pages/menus/discover.dart';
 import 'package:anime_list_app/pages/menus/homepage.dart';
 import 'package:anime_list_app/pages/menus/my_list.dart';
+import 'package:anime_list_app/style/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:anime_list_app/controller/bottom_nav_controller.dart';
@@ -17,8 +18,8 @@ class BottomNav extends StatelessWidget {
 
     final List<Widget> menus = [
       const HomePage(), // Home
-      const Discover(), // Discover
-      const MyListPage(), // My List
+      const DiscoverPage(), // Discover
+      MyListPage(), // My List
     ];
 
     return Obx(() => Scaffold(
@@ -28,10 +29,21 @@ class BottomNav extends StatelessWidget {
                 'assets/Animelist.svg', // Path to your logo
                 fit: BoxFit.contain,
                 height: 100,
-                placeholderBuilder: (context) => Text(
-                    'AnimeList'), // Placeholder text if image fails to load
+                placeholderBuilder: (context) => const Text(
+                    'Kyun Animelist'), // Placeholder text if image fails to load
               ),
             ),
+            actions: [
+              Container(
+                margin: const EdgeInsets.only(right: 15),
+                child: IconButton(
+                  icon: const Icon(Icons.person),
+                  onPressed: () {
+                    // Get.to(const ProfilePage());
+                  },
+                ),
+              )
+            ],
           ),
           body: Center(
             child: menus.elementAt(bottomNavController.currentIndex.value),
@@ -41,6 +53,7 @@ class BottomNav extends StatelessWidget {
             onTap: (index) {
               bottomNavController.changeIndex(index);
             },
+            selectedItemColor: MyColors.primaryColor,
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -51,8 +64,8 @@ class BottomNav extends StatelessWidget {
                 label: 'Search',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profile',
+                icon: Icon(Icons.list),
+                label: 'List',
               ),
             ],
           ),

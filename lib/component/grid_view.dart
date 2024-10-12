@@ -9,7 +9,8 @@ class AnimeGridView extends StatelessWidget {
   final List<AnimeModel> animes;
   final Function(AnimeModel) onAnimeTap;
 
-  const AnimeGridView({super.key, required this.animes, required this.onAnimeTap});
+  const AnimeGridView(
+      {super.key, required this.animes, required this.onAnimeTap});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,8 @@ class AnimeGridView extends StatelessWidget {
                   child: Column(
                     children: [
                       ClipRRect(
-                        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10.0)),
                         child: Image.asset(
                           animes[index].imageUrl,
                           width: 200,
@@ -74,7 +76,7 @@ class AnimeGridView extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    animes[index].genre,
+                                    animes[index].genre ?? 'N/A',
                                     overflow: TextOverflow.fade,
                                     maxLines:
                                         1, // Ensure the text is constrained to one line
@@ -99,7 +101,8 @@ class AnimeGridView extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              margin: const EdgeInsets.only(bottom: 5, right: 5),
+                              margin:
+                                  const EdgeInsets.only(bottom: 5, right: 5),
                               alignment: Alignment.bottomRight,
                               child: IconButton(
                                 icon: const Icon(Icons.bookmark_add),

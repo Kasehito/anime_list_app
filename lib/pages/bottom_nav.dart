@@ -1,7 +1,6 @@
 import 'package:anime_list_app/pages/menus/discover.dart';
 import 'package:anime_list_app/pages/menus/homepage.dart';
 import 'package:anime_list_app/pages/menus/my_list.dart';
-import 'package:anime_list_app/pages/profile_page.dart';
 import 'package:anime_list_app/style/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +19,7 @@ class BottomNav extends StatelessWidget {
     final List<Widget> menus = [
       const HomePage(), // Home
       const DiscoverPage(), // Discover
-      const MyListPage(), // My List
+      MyListPage(), // My List
     ];
 
     return Obx(() => Scaffold(

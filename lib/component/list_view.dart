@@ -1,15 +1,17 @@
-import 'package:anime_list_app/style/my_color.dart';
-import 'package:anime_list_app/style/my_font.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:anime_list_app/controller/watchlist_controller.dart';
 import 'package:anime_list_app/pages/detail_page.dart';
 import 'package:anime_list_app/model/anime_model.dart';
+import 'package:anime_list_app/style/my_color.dart';
+import 'package:anime_list_app/style/my_font.dart';
 
 class AnimeListView extends StatelessWidget {
   final List<AnimeModel> animes;
   final Function(AnimeModel) onAnimeTap;
+  final WatchlistController watchlistController = Get.find();
 
-  const AnimeListView({super.key, required this.animes, required this.onAnimeTap});
+  AnimeListView({super.key, required this.animes, required this.onAnimeTap});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,9 @@ class AnimeListView extends StatelessWidget {
       child: ListView.builder(
         itemCount: animes.length,
         itemBuilder: (context, index) {
+          final anime = animes[index];
           return SizedBox(
-            height:
-                150, // Adjust the height of the container to make the image higher
+            height: 150, // Adjust the height of the container as needed
             child: GestureDetector(
               onTap: () {
                 Get.to(() => DetailPage(animes: animes, index: index));
@@ -37,15 +39,14 @@ class AnimeListView extends StatelessWidget {
                     ),
                   ],
                 ),
-                width: 400,
-                height: 150,
                 margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                 child: Row(
                   children: [
                     ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10.0)),
                       child: Image.asset(
-                        animes[index].imageUrl,
+                        anime.imageUrl ?? '',
                         width: 150,
                         height: 150,
                         fit: BoxFit.cover,
@@ -58,7 +59,7 @@ class AnimeListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            animes[index].title,
+                            anime.title,
                             overflow: TextOverflow.fade,
                             maxLines: 1,
                             style: MyFonts.primaryFont(
@@ -75,18 +76,18 @@ class AnimeListView extends StatelessWidget {
                               ),
                               const SizedBox(width: 5),
                               Text(
-                                animes[index].rating.toString(),
+                                anime.rating.toString(),
                                 style: MyFonts.primaryFont(),
-                              )
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            animes[index].genre,
+                            anime.genre ?? 'N/A',
                             overflow: TextOverflow.fade,
                             maxLines: 1,
                             style: MyFonts.primaryFont(),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -94,8 +95,10 @@ class AnimeListView extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 5, right: 5),
                       alignment: Alignment.centerRight,
                       child: IconButton(
-                        icon: const Icon(Icons.bookmark_add),
-                        onPressed: () => onAnimeTap(animes[index]),
+                        icon: const Icon(Icons.bookmark),
+                        onPressed: () {
+                          watchlistController.addTask(anime);
+                        },
                       ),
                     )
                   ],

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class AnimeData extends GetxController {
   Future<List<AnimeModel>> fetchanimeList() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     return [
       AnimeModel(
           title: 'Sousou no Frieren',
@@ -20,18 +20,26 @@ class AnimeData extends GetxController {
           description:
               'Steins;Gate follows an eclectic group of individuals who have the ability to send text messages to the past.'),
       AnimeModel(
-          title: 'Shingeki no Kyojin',
-          imageUrl: '',
-          genre: 'Action',
+          title: 'Steins;Gate',
+          imageUrl: 'assets/SteinsGate.jpg',
+          genre: 'Sci-Fi',
           rating: 9.12,
           description:
-              'Several hundred years ago, humans were nearly exterminated by Titans.'),
+              'Steins;Gate follows an eclectic group of individuals who have the ability to send text messages to the past.'),
       AnimeModel(
-          title: 'One Piece',
-          imageUrl: '',
-          genre: 'Action',
-          rating: 8.58,
-          description: 'One Piece follows the adventures of Monkey D. Luffy'),
+          title: 'Steins;Gate',
+          imageUrl: 'assets/SteinsGate.jpg',
+          genre: 'Sci-Fi',
+          rating: 9.12,
+          description:
+              'Steins;Gate follows an eclectic group of individuals who have the ability to send text messages to the past.'),
+      AnimeModel(
+          title: 'Steins;Gate',
+          imageUrl: 'assets/SteinsGate.jpg',
+          genre: 'Sci-Fi',
+          rating: 9.12,
+          description:
+              'Steins;Gate follows an eclectic group of individuals who have the ability to send text messages to the past.'),
     ];
   }
 }

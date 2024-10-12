@@ -1,7 +1,6 @@
 import 'package:anime_list_app/pages/menus/discover.dart';
 import 'package:anime_list_app/pages/menus/homepage.dart';
 import 'package:anime_list_app/pages/menus/my_list.dart';
-import 'package:anime_list_app/pages/profile_page.dart';
 import 'package:anime_list_app/style/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,8 +17,8 @@ class BottomNav extends StatelessWidget {
         Get.put(BottomNavController());
 
     final List<Widget> menus = [
-      HomePage(), // Home
-      DiscoverPage(), // Discover
+      const HomePage(), // Home
+      const DiscoverPage(), // Discover
       MyListPage(), // My List
     ];
 
@@ -35,12 +34,15 @@ class BottomNav extends StatelessWidget {
               ),
             ),
             actions: [
-              IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () {
-                  Get.to(const ProfilePage());
-                },
-              ),
+              Container(
+                margin: const EdgeInsets.only(right: 15),
+                child: IconButton(
+                  icon: const Icon(Icons.person),
+                  onPressed: () {
+                    // Get.to(const ProfilePage());
+                  },
+                ),
+              )
             ],
           ),
           body: Center(

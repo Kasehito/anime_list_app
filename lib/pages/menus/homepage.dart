@@ -9,27 +9,37 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FutureBuilder<List<AnimeModel>>(
-          future: AnimeData().fetchanimeList(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Text('No data available');
-            } else {
-              return AnimeGridView(
-                animes: snapshot.data!,
-                onAnimeTap: (anime) {
-                  print(anime.title);
-                },
-              );
-            }
-          },
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 250,
+                child: FutureBuilder<List<AnimeModel>>(
+                  future: AnimeData().fetchanimeList(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return const Text('No data available');
+                    } else {
+                      return AnimeGridView(
+                        animes: snapshot.data!,
+                        onAnimeTap: (anime) {
+                          print(anime.title);
+                        },
+                      );
+                    }
+                  },
+                ),
+              )
+            ],
+          ),
         ),
-      ),
+      )),
     );
   }
 }

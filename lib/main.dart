@@ -1,4 +1,5 @@
 import 'package:anime_list_app/binding/binding.dart';
+import 'package:anime_list_app/controller/auth_controller.dart';
 import 'package:anime_list_app/pages/bottom_nav.dart';
 import 'package:anime_list_app/pages/login_page.dart';
 import 'package:anime_list_app/pages/signup_page.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+  Get.put(AuthController());
+
   runApp(const MainApp());
 }
 

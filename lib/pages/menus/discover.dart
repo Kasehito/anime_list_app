@@ -1,7 +1,9 @@
-import 'package:anime_list_app/component/list_view.dart';
+import 'package:anime_list_app/layout/list_view.dart';
 import 'package:anime_list_app/data/anime_data.dart';
 import 'package:anime_list_app/model/anime_model.dart';
 import 'package:flutter/material.dart';
+import 'package:anime_list_app/pages/detail_page.dart';
+import 'package:get/get.dart';
 
 class DiscoverPage extends StatelessWidget {
   const DiscoverPage({super.key});
@@ -23,7 +25,9 @@ class DiscoverPage extends StatelessWidget {
               return AnimeListView(
                 animes: snapshot.data!,
                 onAnimeTap: (anime) {
-                  print(anime.title);
+                  Get.to(() => DetailPage(
+                      animes: snapshot.data!,
+                      index: snapshot.data!.indexOf(anime)));
                 },
               );
             }

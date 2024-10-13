@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:anime_list_app/controller/bottom_nav_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:anime_list_app/pages/profile_page.dart';
 
 class BottomNav extends StatelessWidget {
   const BottomNav({super.key});
@@ -24,24 +25,20 @@ class BottomNav extends StatelessWidget {
 
     return Obx(() => Scaffold(
           appBar: AppBar(
-            title: Center(
-              child: SvgPicture.asset(
-                'assets/Animelist.svg', // Path to your logo
-                fit: BoxFit.contain,
-                height: 100,
-                placeholderBuilder: (context) => const Text(
-                    'Kyun Animelist'), // Placeholder text if image fails to load
-              ),
+            title: SvgPicture.asset(
+              'assets/AnimeList.svg', // Path to your logo
+              fit: BoxFit.contain,
+              height: 100,
+              placeholderBuilder: (context) => const Text(
+                  'Kyun Animelist'), // Placeholder text if image fails to load
             ),
+            centerTitle: true,
             actions: [
-              Container(
-                margin: const EdgeInsets.only(right: 15),
-                child: IconButton(
-                  icon: const Icon(Icons.person),
-                  onPressed: () {
-                    // Get.to(const ProfilePage());
-                  },
-                ),
+              IconButton(
+                icon: const Icon(Icons.person),
+                onPressed: () {
+                  Get.to(ProfilePage());
+                },
               )
             ],
           ),

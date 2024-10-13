@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:anime_list_app/controller/watchlist_controller.dart';
 import 'package:anime_list_app/style/my_font.dart';
 import 'package:anime_list_app/style/my_color.dart';
+import 'package:anime_list_app/pages/detail_page.dart';
 
 class WatchlistView extends StatelessWidget {
   final WatchlistController watchlistController =
@@ -23,14 +24,13 @@ class WatchlistView extends StatelessWidget {
           itemCount: watchlistController.data.length,
           itemBuilder: (context, index) {
             final anime = watchlistController.data[index];
-
             return SizedBox(
               height:
                   150, // Adjust the height of the container to make the image higher
               child: GestureDetector(
                 onTap: () {
                   // Detail page atau action yang diinginkan saat anime di-tap
-                  print("Tapped on: ${anime.title}");
+                  Get.to(() => DetailPage(animes: watchlistController.data, index: index));
                 },
                 child: Container(
                   decoration: BoxDecoration(

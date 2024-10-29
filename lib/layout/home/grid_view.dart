@@ -4,13 +4,15 @@ import 'package:anime_list_app/style/my_font.dart';
 import 'package:flutter/material.dart';
 import 'package:anime_list_app/model/anime_model.dart';
 import 'package:get/get.dart';
+import 'package:anime_list_app/controller/watchlist_controller.dart';
 
 class AnimeGridView extends StatelessWidget {
   final List<AnimeModel> animes;
   final Function(AnimeModel) onAnimeTap;
 
-  const AnimeGridView(
-      {super.key, required this.animes, required this.onAnimeTap});
+  WatchlistController watchlistController = Get.find();
+
+  AnimeGridView({super.key, required this.animes, required this.onAnimeTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class AnimeGridView extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: animes.length,
           itemBuilder: (context, index) {
+            final anime = animes[index];
             return GestureDetector(
               onTap: () {
                 Get.to(() => DetailPage(animes: animes, index: index));
@@ -99,12 +102,13 @@ class AnimeGridView extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            margin:
-                                const EdgeInsets.only(bottom: 5, right: 5),
+                            margin: const EdgeInsets.only(bottom: 5, right: 5),
                             alignment: Alignment.bottomRight,
                             child: IconButton(
                               icon: const Icon(Icons.bookmark_add),
-                              onPressed: () => onAnimeTap(animes[index]),
+                              onPressed: () {
+                                watchlistController.addTask(anime);
+                              },
                             ),
                           )
                         ],

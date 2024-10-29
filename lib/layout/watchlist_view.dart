@@ -16,10 +16,8 @@ class WatchlistView extends StatelessWidget {
     // Memastikan data dimuat dari database
     watchlistController.loadTasks();
 
-    return Obx(() {
-      if (watchlistController.data.isEmpty) {
-        return const Center(child: Text("No anime in your watchlist."));
-      } else {
+    return Obx(
+      () {
         return ListView.builder(
           itemCount: watchlistController.data.length,
           itemBuilder: (context, index) {
@@ -30,7 +28,8 @@ class WatchlistView extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   // Detail page atau action yang diinginkan saat anime di-tap
-                  Get.to(() => DetailPage(animes: watchlistController.data, index: index));
+                  Get.to(() => DetailPage(
+                      animes: watchlistController.data, index: index));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -96,7 +95,7 @@ class WatchlistView extends StatelessWidget {
             );
           },
         );
-      }
-    });
+      },
+    );
   }
 }

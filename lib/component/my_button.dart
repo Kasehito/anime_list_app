@@ -21,9 +21,11 @@ class MyButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onpressed,
       style: ElevatedButton.styleFrom(
-        foregroundColor: fgColor,
-        backgroundColor: bgColor,
-      ),
+          foregroundColor: fgColor,
+          backgroundColor: bgColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          )),
       child: Text(
         text,
         style: textStyle,

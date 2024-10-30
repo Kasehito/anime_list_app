@@ -13,7 +13,6 @@ class WatchlistController extends GetxController {
   }
 
   Future<Database> initDB() async {
-    print('creat db');
     var dbPath = await getDatabasesPath();
     String path = join(dbPath, 'watchlist_database.db');
 

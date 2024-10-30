@@ -1,4 +1,4 @@
-import 'package:anime_list_app/component/watchlist_view.dart';
+import 'package:anime_list_app/layout/watchlist_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:anime_list_app/controller/watchlist_controller.dart';

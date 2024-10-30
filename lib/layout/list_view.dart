@@ -46,7 +46,7 @@ class AnimeListView extends StatelessWidget {
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
                       child: Image.asset(
-                        anime.imageUrl ?? '',
+                        anime.imageUrl,
                         width: 150,
                         height: 150,
                         fit: BoxFit.cover,
@@ -95,7 +95,7 @@ class AnimeListView extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 5, right: 5),
                       alignment: Alignment.centerRight,
                       child: IconButton(
-                        icon: const Icon(Icons.bookmark),
+                        icon: const Icon(Icons.bookmark_add_outlined),
                         onPressed: () {
                           watchlistController.addTask(anime);
                         },

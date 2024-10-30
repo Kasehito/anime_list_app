@@ -4,7 +4,6 @@ import 'package:anime_list_app/style/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:anime_list_app/controller/watchlist_controller.dart';
-import 'package:anime_list_app/layout/watchlist_view.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});

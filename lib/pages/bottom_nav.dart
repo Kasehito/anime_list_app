@@ -19,7 +19,7 @@ class BottomNav extends StatelessWidget {
 
     final List<Widget> menus = [
       const HomePage(), // Home
-      const DiscoverPage(), // Discover
+      DiscoverPage(), // Discover
       MyListPage(), // My List
     ];
 

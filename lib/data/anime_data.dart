@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class AnimeData extends GetxController {
   Future<List<AnimeModel>> fetchanimeList() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 0));
     return [
       AnimeModel(
           title: 'Sousou no Frieren',

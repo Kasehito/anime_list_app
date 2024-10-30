@@ -1,39 +1,25 @@
-import 'package:anime_list_app/layout/list_view.dart';
-import 'package:anime_list_app/data/anime_data.dart';
-import 'package:anime_list_app/model/anime_model.dart';
+import 'package:anime_list_app/controller/responsive_controller.dart';
+import 'package:anime_list_app/layout/discover/discover_mobile.dart';
+import 'package:anime_list_app/layout/discover/discover_tablet.dart';
 import 'package:flutter/material.dart';
-import 'package:anime_list_app/pages/detail_page.dart';
 import 'package:get/get.dart';
 
 class DiscoverPage extends StatelessWidget {
-  const DiscoverPage({super.key});
+  DiscoverPage({super.key});
+
+  final ResponsiveController responsiveController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: FutureBuilder<List<AnimeModel>>(
-          future: AnimeData().fetchanimeList(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Text('No data available');
-            } else {
-              return AnimeListView(
-                animes: snapshot.data!,
-                onAnimeTap: (anime) {
-                  Get.to(() => DetailPage(
-                      animes: snapshot.data!,
-                      index: snapshot.data!.indexOf(anime)));
-                },
-              );
-            }
-          },
-        ),
-      ),
-    );
+    return Scaffold(body: LayoutBuilder(
+      builder: (context, constraints) {
+        responsiveController.setScreenWidth(constraints.maxWidth);
+        if (responsiveController.isTablet()) {
+          return const DiscoverTablet();
+        } else {
+          return const DiscoverMobile();
+        }
+      },
+    ));
   }
 }
